@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA | Loja de Design & Lifestyle</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       RESET & VARIÁVEIS CSS
+       ========================================================================== */
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-body);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVEGAÇÃO
+       ========================================================================== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .cart-trigger-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+      color: var(--text-main);
+    }
+
+    .cart-trigger-btn:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background-color: var(--primary);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 0 2px #fff;
+      transform: scale(0);
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cart-badge.has-items {
+      transform: scale(1);
+    }
+
+    /* ==========================================================================
+       HERO BANNER
+       ========================================================================== */
+    .hero {
+      position: relative;
+      background: radial-gradient(circle at top right, #e0e7ff 0%, #f8fafc 50%);
+      padding: 5.5rem 1.5rem 6.5rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.2px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2.25rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 0.95rem 2rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+      transition: var(--transition);
+    }
+
+    .cta-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 20px -3px rgba(79, 70, 229, 0.4);
+    }
+
+    /* ==========================================================================
+       CATÁLOGO DE PRODUTOS
+       ========================================================================== */
+    .products-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(79, 70, 229, 0.2);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 80%;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+
+    .product-img-wrapper img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover .product-img-wrapper img {
+      transform: scale(1.06);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    .product-info {
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+
+    .product-category {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .product-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .add-to-cart-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: var(--primary);
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
+    /* ==========================================================================
+       DRAWER LATERAL DO CARRINHO
+       ========================================================================== */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -440px;
+      width: 100%;
+      max-width: 420px;
+      height: 100%;
+      background: var(--bg-surface);
+      z-index: 200;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      transition: right 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .cart-drawer.active {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .close-cart-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .close-cart-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .cart-items-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .cart-item-img {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      background: #f1f5f9;
+      flex-shrink: 0;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .cart-item-price {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      background: #f8fafc;
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .cart-item-qty {
+      font-size: 0.9rem;
+      font-weight: 600;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .remove-item-btn {
+      color: #94a3b8;
+      padding: 0.4rem;
+      margin-left: auto;
+      transition: var(--transition);
+    }
+
+    .remove-item-btn:hover {
+      color: #ef4444;
+    }
+
+    .empty-cart-view {
+      margin: auto;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-cart-view svg {
+      margin-bottom: 1rem;
+      stroke: #cbd5e1;
+    }
+
+    .cart-footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background: #fdfdfd;
+    }
+
+    .cart-subtotal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .cart-total-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+    }
+
+    .checkout-btn:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .checkout-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* ==========================================================================
+       RODAPÉ (FOOTER)
+       ========================================================================== */
+    .footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 4.5rem 1.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-brand .logo {
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .footer-desc {
+      max-width: 320px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .footer-col h3 {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      .cart-drawer {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header">
+    <nav class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </span>
+        AURA
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#">Início</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <button id="cartBtn" class="cart-trigger-btn" aria-label="Abrir Carrinho">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="21" r="1"></circle>
+          <circle cx="19" cy="21" r="1"></circle>
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+        </svg>
+        <span id="cartCount" class="cart-badge">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-pill">Lançamentos 2026</span>
+      <h1 class="hero-title">Eleve o seu espaço a um novo nível.</h1>
+      <p class="hero-subtitle">
+        Uma curadoria única de produtos tecnológicos, minimalistas e concebidos para transformar a sua rotina com elegância e sofisticação.
+      </p>
+      <a href="#produtos" class="cta-btn">
+        <span>Ver Coleção</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== CATÁLOGO DE PRODUTOS ==================== -->
+  <main class="products-section" id="produtos">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Produtos em Destaque</h2>
+        <p class="section-desc">Design ergonômico, acabamento premium e tecnologia.</p>
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Inserido dinamicamente via JS -->
+    </div>
+  </main>
+
+  <!-- ==================== CARRINHO LATERAL (DRAWER) ==================== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrinho de Compras">
+    <div class="cart-header">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="21" r="1"></circle>
+          <circle cx="19" cy="21" r="1"></circle>
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+        </svg>
+        Seu Carrinho
+      </h2>
+      <button class="close-cart-btn" id="closeCartBtn" aria-label="Fechar Carrinho">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Itens do carrinho renderizados aqui -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span class="cart-total-value" id="cartTotal">R$&nbsp;0,00</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" disabled>
+        <span>Finalizar Compra</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== RODAPÉ ==================== -->
+  <footer class="footer" id="contato">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </span>
+          AURA
+        </a>
+        <p class="footer-desc">
+          Redefinindo o design no seu cotidiano através de estética contemporânea e alta durabilidade.
+        </p>
+      </div>
+
+      <div class="footer-col" id="sobre">
+        <h3>Navegação</h3>
+        <ul class="footer-links">
+          <li><a href="#">Início</a></li>
+          <li><a href="#produtos">Catálogo</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Sustentabilidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Atendimento</h3>
+        <ul class="footer-links">
+          <li><a href="#">contato@aura-design.com.br</a></li>
+          <li><a href="#">+55 (11) 3000-0000</a></li>
+          <li><a href="#">Envios e Devoluções</a></li>
+          <li><a href="#">Políticas de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 AURA Store. Todos os direitos reservados.</p>
+      <p>Desenvolvido com HTML5, CSS3 & JavaScript Puro.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // 1. DADOS DOS PRODUTOS (Valores em Reais)
+    const products = [
+      {
+        id: 1,
+        name: "Headphone ANC PureSound",
+        category: "Áudio",
+        price: 899.90,
+        tag: "Destaque",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 2,
+        name: "Relógio Minimalista Nordic",
+        category: "Acessórios",
+        price: 649.00,
+        tag: "Novo",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 3,
+        name: "Caixa de Som Bluetooth Horizon",
+        category: "Áudio",
+        price: 489.90,
+        tag: "Popular",
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 4,
+        name: "Teclado Mecânico Compacto",
+        category: "Setup",
+        price: 529.00,
+        tag: "Edição Limitada",
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 5,
+        name: "Luminária LED Escultural",
+        category: "Iluminação",
+        price: 319.90,
+        tag: "Eco",
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 6,
+        name: "Suporte de Alumínio Anodizado",
+        category: "Workspace",
+        price: 219.00,
+        tag: "Essencial",
+        image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    // 2. ESTADO DA APLICAÇÃO
+    let cart = [];
+
+    // 3. SELETORES DO DOM
+    const productsGrid = document.getElementById("productsGrid");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const cartBtn = document.getElementById("cartBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsContainer = document.getElementById("cartItemsContainer");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    // Formatação de Preço para Real Brasileiro (BRL)
+    const formatCurrency = (val) => {
+      return new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      }).format(val);
+    };
+
+    // 4. RENDERIZAR PRODUTOS
+    function renderProducts() {
+      productsGrid.innerHTML = products.map(product => `
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-badge">${product.tag}</span>
+            <img src="${product.image}" alt="${product.name}" loading="lazy" />
+          </div>
+          <div class="product-info">
+            <span class="product-category">${product.category}</span>
+            <h3 class="product-title">${product.name}</h3>
+            <div class="product-footer">
+              <span class="product-price">${formatCurrency(product.price)}</span>
+              <button class="add-to-cart-btn" onclick="addToCart(${product.id})" aria-label="Adicionar ${product.name} ao Carrinho">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // 5. GESTÃO DO CARRINHO
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      const existingItem = cart.find(item => item.id === productId);
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      updateCart();
+      openCart();
+    }
+
+    function updateQuantity(productId, delta) {
+      const item = cart.find(item => item.id === productId);
+      if (!item) return;
+
+      item.quantity += delta;
+
+      if (item.quantity <= 0) {
+        removeFromCart(productId);
+      } else {
+        updateCart();
+      }
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      updateCart();
+    }
+
+    function updateCart() {
+      // Atualizar Contador do Ícone
+      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+      cartCount.textContent = totalItems;
+
+      if (totalItems > 0) {
+        cartCount.classList.add("has-items");
+        checkoutBtn.disabled = false;
+      } else {
+        cartCount.classList.remove("has-items");
+        checkoutBtn.disabled = true;
+      }
+
+      // Atualizar Subtotal
+      const totalCost = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      cartTotal.textContent = formatCurrency(totalCost);
+
+      // Renderizar Itens
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart-view">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="21" r="1"></circle>
+              <circle cx="19" cy="21" r="1"></circle>
+              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+            </svg>
+            <p>Seu carrinho está vazio.</p>
+          </div>
+        `;
+        return;
+      }
+
+      cartItemsContainer.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}" class="cart-item-img" />
+          <div class="cart-item-info">
+            <h4 class="cart-item-title">${item.name}</h4>
+            <div class="cart-item-price">${formatCurrency(item.price)}</div>
+            <div class="cart-item-controls">
+              <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+              <span class="cart-item-qty">${item.quantity}</span>
+              <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+            </div>
+          </div>
+          <button class="remove-item-btn" onclick="removeFromCart(${item.id})" aria-label="Remover item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+        </div>
+      `).join("");
+    }
+
+    // 6. CONTROLE DO DRAWER
+    function openCart() {
+      cartDrawer.classList.add("active");
+      cartOverlay.classList.add("active");
+      document.body.style.overflow = "hidden"; // Bloqueia scroll de fundo
+    }
+
+    function closeCart() {
+      cartDrawer.classList.remove("active");
+      cartOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    // 7. EVENT LISTENERS
+    cartBtn.addEventListener("click", openCart);
+    closeCartBtn.addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+
+    checkoutBtn.addEventListener("click", () => {
+      if (cart.length === 0) return;
+      
+      const totalFormatted = cartTotal.textContent;
+      alert(`🎉 Parabéns! Seu pedido no valor de ${totalFormatted} foi realizado com sucesso.`);
+      
+      // Resetar carrinho
+      cart = [];
+      updateCart();
+      closeCart();
+    });
+
+    // Fechar carrinho com a tecla ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && cartDrawer.classList.contains("active")) {
+        closeCart();
+      }
+    });
+
+    // 8. INICIALIZAÇÃO
+    renderProducts();
+    updateCart();
+  </script>
+</body>
+</html>
